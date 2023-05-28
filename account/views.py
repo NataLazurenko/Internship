@@ -162,13 +162,16 @@ def dashboard_export(request):
     worksheet.write('C2', 'Русский язык')
     worksheet.write('D2', 'Информационная граммотность')
     worksheet.write('E2', 'Анализ информации')
-
+    worksheet.write('F2', 'Кейс чемпионат')
     m=2
     for i in applications:
         m+=1
         print(m)
         worksheet.write(f'A{str(m)}', i.user.first_name)
-        worksheet.write(f'B{str(m)}', f"{i.career_percent}%")
+        if i.career_percent is not None:
+            worksheet.write(f'B{str(m)}', f"{i.career_percent}%")
+        else:
+            worksheet.write(f'B{str(m)}', f"Не пройден")
         tests = ApplicationTest.objects.all().filter(application=i)
         try:
             worksheet.write(f'C{str(m)}', f'{tests.get(subject="russian").value}%')
@@ -185,6 +188,15 @@ def dashboard_export(request):
             worksheet.write(f'E{str(m)}', f'{tests.get(subject="analysis").value}%')
         except Exception:
             worksheet.write(f'E{str(m)}', f'Не пройденно')
+        if  Championship.objects.all().filter(application=i).exists():
+            champ = Championship.objects.get(application=i)
+            if champ.percent is not None:
+                worksheet.write(f'F{str(m)}', f'{champ.percent}%')
+            else:
+                worksheet.write(f'F{str(m)}', f'Не проверен')
+        else:
+            worksheet.write(f'F{str(m)}', f'Не пройден')
+
     worksheet.autofit()
     workbook.close()
     buffer.seek(0)
