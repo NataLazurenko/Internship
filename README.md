@@ -7,9 +7,10 @@
 ```bash
 git clone https://github.com/NataLazurenko/Internship.git
 ```
-Создаём виртуальное окружение Python
+Создаём виртуальное окружение Python и активируем его
  ```bash
  python3 -m venv env
+ source evn/bin/activate
  ```
  Ставим необходимые зависимости для проекта
  ```bash
