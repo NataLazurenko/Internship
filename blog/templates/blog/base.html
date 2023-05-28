@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static "css/blog.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    font-family:helvetica, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+body > * {
+    width: 80%; /* или любой другой процент в зависимости от ваших предпочтений */
+    border-radius: 15px; /* скругление углов */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* тень */
+    background-color: #fff; /* фоновый цвет */
+    padding: 20px; /* отступы внутри блоков */
+}
+</style>

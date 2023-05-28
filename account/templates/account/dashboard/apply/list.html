@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Обзор{% endblock %}
+
+{% block content %}
+<h1>{% if recommended %}Рекомендованные пользователи{% else %}Не рекомендованные пользователи{% endif %}</h1>
+{% for i in applications %}
+<p>
+    <a href="{% url 'view_application' id=i.pk%}">{{i.user.first_name}}</a>
+    {% if recommended %}
+        <input type="checkbox" name="" id="myCheckbox" application="{{i.pk}}">
+    {% else %}
+        <a href="{% url 'account:not_recommended_list' application=i.pk%}">Рекомендовать</a>
+    {% endif %}
+</p>
+{% empty %}
+Здесь пока нечего нет!
+{% endfor %}
+
+<script>
+    const checkbox = document.getElementById('myCheckbox')
+
+checkbox.addEventListener('change', async (event) => {
+  application_id = event.target.attributes.application.value
+  if (event.currentTarget.checked) {
+    checkbox.setAttribute('disabled', '')
+    let response = await fetch('/account/tests/accept/'+application_id+'/');
+    if (response.ok) {
+      let json = await response.json();
+      location.reload()
+    } else {
+      alert("Ошибка HTTP: " + response.status);
+    }
+  }
+    })
+
+</script>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'recommended_list'%}">Рекомендованные</a></p>
+<p><a href="{% url 'not_recommended_list' %}">Не рекомендованные</a></p>
+
+{% endblock %}

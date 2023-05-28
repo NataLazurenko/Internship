@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Мои заявки</h1>
+<p>
+    Welcome to your dashboard.
+</p>
+{% if application %}
+    <p>Статус заявки: {{application.get_status}}</p>
+    <p>Заявка создана: {{application.created}}</p>
+{% else %}
+    У вас нет активной заявки
+{% endif %}
+{% endblock %}

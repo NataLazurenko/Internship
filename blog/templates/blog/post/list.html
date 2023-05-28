@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Мой блог{% endblock %}
+
+{% block content %}
+  <h1>Мой блог</h1>
+  {% for post in posts %}
+    <h2>
+      <a href="{{ post.get_absolute_url }}">
+        {{ post.title }}
+      </a>
+    </h2>
+    <p class="date">
+      Опубликован {{ post.publish }}, кем: {{ post.author }}
+    </p>
+  {% endfor %}
+  {% include "pagination.html" with page=page_obj %}
+  <p><a href="{% url "blog:post_create"%}" class="button-submit">Добавить</a></p>
+{% endblock %}

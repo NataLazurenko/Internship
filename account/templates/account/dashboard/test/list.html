@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<p>
+    Welcome to your dashboard.
+</p>
+{% for i in applications %}
+<form method="post">
+    {% csrf_token %}
+    <a href="{% url 'view_application' id=i.pk %}">{{i.user.first_name}}</a>
+    <input type="hidden" name="application" value="{{i.pk}}">
+    <input type="number" placeholder="Процент" name="points" min="0" maxlength="100">
+    <input type="submit" value="Сохранить" style="display: none;">
+</form>
+{% endfor %}
+{% endblock %}

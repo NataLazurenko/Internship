@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Создание поста{% endblock %}
+
+{% block content %}
+    <h1>Создание поста</h1>
+    <form method="post">
+      {{ form.as_p }}
+      <br style="clear: both;">
+      {{ form.media }}
+      {% csrf_token %}
+      <input type="submit" value="Создать">
+    </form>
+{% endblock %}

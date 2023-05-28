@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Обзор{% endblock %}
+
+{% block content %}
+<h1>Просмотр стажера</h1>
+<p>
+    Ключевая информация о стажере
+</p>
+<p>ФИО: {{application.user.first_name}}</p>
+<p>Образование: {{application.get_education_display}}</p>
+<p>Возраст: {{ application.age }}</p>
+<p>Гражданство РФ: {% if application.russian_citizenship %}Да{% else %}Нет{% endif%}</p>
+<p>Заявка создана: {{application.created}}</p>
+{% endblock %}

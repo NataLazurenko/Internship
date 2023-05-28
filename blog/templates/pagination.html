@@ -1,0 +1,35 @@
+<div class="pagination">
+  <span class="step-links">
+    {% if page.has_previous %}
+      <a href="?page={{ page.previous_page_number }}">Назад</a>
+    {% endif %}
+    <span class="current">
+      {{ page.number }} из {{ page.paginator.num_pages }}
+    </span>
+    {% if page.has_next %}
+      <a href="?page={{ page.next_page_number }}">Далее</a>
+    {% endif %}
+  </span>
+</div>
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    font-family:helvetica, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+body > * {
+    width: 80%; /* или любой другой процент в зависимости от ваших предпочтений */
+    border-radius: 15px; /* скругление углов */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* тень */
+    background-color: #fff; /* фоновый цвет */
+    padding: 20px; /* отступы внутри блоков */
+}
+</style>

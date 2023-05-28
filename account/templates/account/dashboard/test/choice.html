@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'tests_give' subject='russian'%}">Русский</a></p>
+<p><a href="{% url 'tests_give' subject='computer'%}">Компьютерная граммотность</a></p>
+<p><a href="{% url 'tests_give' subject='analysis'%}">Анализ информации</a></p>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "main_base.html" %}
+
+{% block title %}
+Кейс-чемпионат
+{% endblock %}
+
+{% block content %}
+  <h1>
+      Кейс чемпионат
+  </h1>
+  <div class="module">
+    <h2></h2>
+    <form method="post" enctype="multipart/form-data">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <p><input type="submit" value="Отправить"></p>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Комната{% endblock %}
+
+{% block content %}
+    <h1>Комната</h1>
+    <ul>
+    {% for item in my_list %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

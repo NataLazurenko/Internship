@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Кейс чемпионат</h1>
+<p>
+    Welcome to your dashboard.
+</p>
+{% for i in championships %}
+<form method="post">
+    {% csrf_token %}
+    <a href="{% url 'view_application' id=i.application.pk %}">{{i.application.user.first_name}}</a>
+    <a href="{% url 'championship_download' id=i.application.pk%}">Download</a>
+    <input type="hidden" name="application" value="{{i.application.pk}}">
+    <input type="number" placeholder="Процент" name="points" min="0" maxlength="100">
+    <input type="submit" value="Сохранить" style="display: none;">
+</form>
+{% endfor %}
+{% endblock %}

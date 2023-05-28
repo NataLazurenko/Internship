@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Заявка на стажера{% endblock %}
+
+{% block content %}
+    <h1>Заявка на стажера</h1>
+    <p>Заполните все поля</p>
+    <form method="post">
+        <div id="age_form">
+            <h4>Возраст</h4>
+            {{form.age}}
+            <datalist id="ages">
+            {% for item in ages_list %}
+              <option>{{ item }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+        <div id="city_form">
+            <h4>Город</h4>
+            {{form.city}}
+            <datalist id="cities">
+            {% for city in cities_list %}
+              <option>{{ city }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+        <div id="universities_form">
+            <h4>Университет</h4>
+            {{form.university}}
+            <datalist id="universities">
+            {% for university in universities_list %}
+              <option>{{ university }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+        <div id="direction_form">
+            <h4>Направление</h4>
+            {{form.direction}}
+            <datalist id="directions">
+            {% for direction in directions_list %}
+              <option>{{ direction }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+        <div id="work_experience_form">
+            <h4>Опыт работы</h4>
+            {{form.work_experience}}
+            <datalist id="work_expirience_list">
+            {% for work_expirience in work_expirience_list %}
+              <option>{{ work_expirience }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+        <div id="internship_direction_form">
+            <h4>Предпочтения нааправления стажировки</h4>
+            <input list="internship_directions" id="internship_direction" name="internship_direction" placeholder="HR-Город, Правовое пространство" multiple size="50"/>
+            <datalist id="internship_directions">
+            {% for internship_direction in internship_direction_list %}
+              <option>{{ internship_direction }}</option>
+            {% endfor %}
+            </datalist>
+        </div>
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Submit"></p>
+    </form>
+{% endblock %}
